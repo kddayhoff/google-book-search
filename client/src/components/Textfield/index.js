@@ -28,7 +28,7 @@ export default function BookSearchField(props) {
 
       <Button variant="contained" color="primary" 
         onClick={props.searchBooks}>
-        Primary
+        Search
       </Button>
     </form>
     

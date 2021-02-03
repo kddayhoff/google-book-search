@@ -15,6 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,38 +49,35 @@ export default function SavedBookCard() {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} variant="outlined">
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
+       
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title="Book Title"
+    
       />
+      <CardContent>
+      <Typography variant="body2" color="textSecondary" component="p">
+         Author Here
+        </Typography>
+      book image here
       <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        title="book image"
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Book Title Here
-        </Typography>
-      </CardContent>
+    </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+        
+          <Button variant="contained" color="primary" 
+        >
+        Delete
+      </Button>
+    
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -93,13 +91,7 @@ export default function SavedBookCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Author Here
-          </Typography>
-          <Typography paragraph>
-           Image Here
-          </Typography>
+       
           <Typography paragraph>
            Description Here
           </Typography>
