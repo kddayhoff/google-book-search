@@ -8,9 +8,9 @@ const apiRoutes = require("./api");
 //when doing routes in api folder, no need to put /api as part of the path/route
 router.use("/api", apiRoutes);
 
-// If no API routes are hit, send the React app
-// router.use(function(req, res) {
-//   res.sendFile(path.join(__dirname, "../client/build/index.html"));
-// });
+// don'tneed this route unless it is deployed
+router.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 module.exports = router;
