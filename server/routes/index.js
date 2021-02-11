@@ -10,7 +10,7 @@ router.use("/api", apiRoutes);
 
 // don'tneed this route unless it is deployed
 router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
 
 module.exports = router;
