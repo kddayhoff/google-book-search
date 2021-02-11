@@ -4,19 +4,15 @@ import { Container, Typography } from "@material-ui/core";
 import API from "../utils/API";
 
 export default function SavedBooks() {
-  const [savedBook, setSavedBooks] = useState([]);
 
-  const [deleteBook, setDeleteBook] = useState("");
+    //only have hook to get saved books and not delete thembc saved books is the array printing the cards to the page with .map, delete is just removingbook from database while  saved book reprints cards
+  const [savedBook, setSavedBooks] = useState([]);
 
   useEffect(() => {
     getSavedBooks();
   }, []);
 
-  //event that happens when we click the delete button
-  const handleSubmit = (event) => {
-    const { value } = event.target;
-    setDeleteBook(value);
-  };
+  
 
   const getSavedBooks = () => {
     API.getSavedBooks()
@@ -27,13 +23,12 @@ export default function SavedBooks() {
       .catch((err) => console.log(err));
   };
 
-  const deleteBookFromPage = (bookToDelete) => {
-    console.log(bookToDelete);
-    API.deleteBook(bookToDelete)({
-      id: bookToDelete._id,
-    })
+  const deleteBookFromPage = (id) => {
+    console.log(id);
+    API.deleteBook(id)
       .then((res) => {
         console.log(res);
+        getSavedBooks();
       })
       .catch((err) => console.log(err));
   };
@@ -50,8 +45,8 @@ export default function SavedBooks() {
           authors={books.authors}
           description={books.description}
           link={books.link}
-          deleteBtn={() => {
-            deleteBookFromPage(books);
+          saveBtn={() => {
+            deleteBookFromPage(books._id);
           }}
           btnText="Delete Book"
         />

@@ -56,7 +56,6 @@ export default function SavedBookCard(props) {
       <CardActions disableSpacing>
         <Button variant="contained" color="primary"
           onClick={props.saveBtn}>
-              {props.deleteBtn}
               {props.btnText} 
         </Button>
 
