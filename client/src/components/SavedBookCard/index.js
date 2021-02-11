@@ -1,21 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import {Card, CardHeader, CardMedia, CardContent, CardActions, Collapse, IconButton, Typography, Button, Link  } from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,24 +12,24 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: red[500],
   },
 }));
 
-export default function SavedBookCard() {
+export default function SavedBookCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -51,33 +40,26 @@ export default function SavedBookCard() {
   return (
     <Card className={classes.root} variant="outlined">
       <CardHeader
-       
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="Book Title"
-    
+        title={props.title}
       />
       <CardContent>
-      <Typography variant="body2" color="textSecondary" component="p">
-         Author Here
+        <Typography variant="body2" color="textSecondary" component="p">
+          {props.authors}
         </Typography>
-      book image here
-      <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="book image"
-      />
-    </CardContent>
+
+        <CardMedia
+          className={classes.media}
+          image={props.image}
+          title="book image"
+        />
+      </CardContent>
       <CardActions disableSpacing>
-        
-          <Button variant="contained" color="primary" 
-        >
-        Delete
-      </Button>
-    
+        <Button variant="contained" color="primary"
+          onClick={props.saveBtn}>
+              {props.deleteBtn}
+              {props.btnText} 
+        </Button>
+
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -91,13 +73,8 @@ export default function SavedBookCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-       
-          <Typography paragraph>
-           Description Here
-          </Typography>
-          <Typography>
-            Link Here
-          </Typography>
+          <Typography paragraph>{props.description}</Typography>
+          <Link to={props.link}>View more info</Link>
         </CardContent>
       </Collapse>
     </Card>

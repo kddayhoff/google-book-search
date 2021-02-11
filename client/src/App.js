@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import BookSearch from "./Pages/BookSearch";
-import SavedBooks from "./Pages/SavedBooks"
+import SavedBooks from "./Pages/SavedBooks";
 //bring pages in here so we can move between pages
 function App() {
   return (
@@ -11,14 +11,13 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route exact path = {["/", "/search"]}>
+          <Route exact path={["/", "/search"]}>
             {/* brought in from pages - components will be brought in to the pages themselves, not the app.js */}
-            <BookSearch/>
+            <BookSearch />
           </Route>
-          <Route exact path = "/saved-books">
-            <SavedBooks/>
+          <Route exact path="/saved-books">
+            <SavedBooks />
           </Route>
-
         </Switch>
       </div>
     </Router>
